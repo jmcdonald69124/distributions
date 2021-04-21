@@ -6,7 +6,7 @@ import (
 )
 
 // To get a number between 0 and 1
-func randomFloat() float64 {
+func RandomFloat() float64 {
 	for {
 		x := rand.Float64()
 		if x >= 0 && x <= 1 {
@@ -23,8 +23,8 @@ func randomFloat() float64 {
 
 // standard normal distribution (mean = 0, stddev = 1)
 func calcNorm() (float64, float64) {
-	u1 := randomFloat()
-	u2 := randomFloat()
+	u1 := RandomFloat()
+	u2 := RandomFloat()
 	mean := 0
 	stdev := 1
 
