@@ -5,28 +5,60 @@ import (
 	"math/rand"
 )
 
-// Module 7 Slide 4 of 16  / Box-Muller Method
-// z = sqrt(−2 ln(U1) cos(2 * PI * U2))
-
-func calcNorm() float64 {
-	u1 := 0 + rand.Float64()*(1-0)
-	u2 := 0 + rand.Float64()*(1-0)
-	lu1 := math.Log(u1)
-	cu2 := math.Cos(2 * math.Pi * u2)
-	z := math.Sqrt(-2 * lu1 * cu2)
-
-	return z
-}
-
-func Normal() float64 {
-
-	var z float64
+// To get a number between 0 and 1
+func randomFloat() float64 {
 	for {
-		z = calcNorm()
-		if !math.IsNaN(z) {
-			break
+		x := rand.Float64()
+		if x >= 0 && x <= 1 {
+			return x
 		}
 	}
 
-	return z
+}
+
+// Module 7 Slide 4 of 16  / Box-Muller Method
+
+// z0 = sqrt(−2 ln(U1) * cos(2 * PI * U2))
+// z1 = sqrt(−2 ln(U1) * sin(2 * PI * U2))
+
+// standard normal distribution (mean = 0, stddev = 1)
+func calcNorm() (float64, float64) {
+	u1 := randomFloat()
+	u2 := randomFloat()
+	mean := 0
+	stdev := 1
+
+	lu1 := float64(stdev) * math.Sqrt(-2*math.Log(u1))
+
+	z0 := (lu1 * math.Cos((2*math.Pi)*u2)) + float64(mean)
+	z1 := (lu1 * math.Sin((2*math.Pi)*u2)) + float64(mean)
+	return z0, z1
+}
+
+// standard normal distribution (mean = 0, stddev = 1)
+func Mean(norm []float64) float64 {
+	total := float64(0)
+	for _, number := range norm {
+		total = total + number
+	}
+
+	return total / float64(len(norm))
+
+}
+
+func NormStdDev([]float64) int32 {
+
+	return 1
+}
+
+func Normal() (float64, float64) {
+	var z0 float64
+	var z1 float64
+	for {
+		z0, z1 = calcNorm()
+		if !math.IsNaN(z0) || !math.IsNaN(z1) {
+			break
+		}
+	}
+	return z0, z1
 }

@@ -3,19 +3,19 @@ package dist
 import (
 	"fmt"
 	"testing"
-
-	stats "github.com/montanaflynn/stats"
 )
 
 func Test_Normal(t *testing.T) {
 	var numbers []float64
 
-	for i := 1; i < 10; i++ {
-		n := Normal()
+	for i := 1; i < 100; i++ {
+		n, o := Normal()
 		numbers = append(numbers, n)
-		fmt.Println(n)
-	}
+		numbers = append(numbers, o)
 
-	v := stats.NormFit(numbers)
-	fmt.Printf("NormFit : %v", v)
+		fmt.Println(n)
+		fmt.Println(o)
+	}
+	// Todo mean and std dev needs to be calculated
+
 }
