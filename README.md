@@ -5,21 +5,14 @@ This series of random number generators allows you to create random numbers that
 
 Go tests have been written against the Mean and Variance of the distributions and the documentation below will show the histograms from samples of random numbers returned by the random number generation functions.
 
-# Using this library
+## Using this library
 
 To use this library just `go get` this repository and use the following functions to start generating random numbers.
 
 _________________
-## Bernoulli
+### Bernoulli
 
-Bernoulli takes a probability of p and returns a 1 or 0 based on the formula above.
-
-![Bernoulli](images/bernoulli.png)
-
-```
-Pr(X=1)=p=1 
-Pr(X=0)=1-q
-```
+Bernoulli takes a probability of p and given a Unif(0,1) number returns a 0 if the random number is less than or equal to p, otherwise returns 1.
 
 The function takes a float64, probability as a parameter. The function will return an error if the probability value is _less than_ 0 OR _greater than_ 1.
 
@@ -28,36 +21,36 @@ probability := 0.25
 number, err := Bernoulli(probability)
 ```
 
-### Mean
+#### Mean
 `E(X) = p`
 
-### Variance
+
+#### Variance
 `Var[X] = pq = p(1-p)`
 _________________
-## Exponential
+### Exponential
 
-The Exponential function generates random numbers from a Unif(0,1) random number so that the returned value fits an exponential distribution given a rate parameter which is a float64. 
+The Exponential function generates random numbers from a Unif(0,1) random number so that the returned value fits an exponential distribution given a scale parameter which is a float64.
 
+The function will return an error if the scale parameter value is _less than_ 0 OR _equal to_ 0.
 ```
 rate_parameter := 1.5
 n, _ := Exp(rp)
 ```
 
-![Exponential](images/exponential.png)
+#### Mean 
+`E[X] = scale parameter` 
 
-### Mean 
-`E[X] = 1 / λ` 
-
-### Variance
-`Var(X) = 1 / λ^2`
+#### Variance
+`Var(X) = scale parameter^2`
 _________________
 ## Weibull
 
-![Exponential](images/weibull.png)
+
 _________________
 ## Standard Normal
 
-![Exponential](images/standard_normal.png)
+
 
 ### Mean 
 `E[X] = μ`
