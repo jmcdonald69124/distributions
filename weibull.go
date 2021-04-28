@@ -25,10 +25,6 @@ func (d WeibullDistribution) RandVar(a float64, b float64) (float64, error) {
 		return -1, errors.New("b must be greater than 0")
 	}
 
-	// b < 1 ⇒ failure rate increasing with time
-	// b > 1 ⇒ failure rate decreases with time
-	// b = 1 ⇒ failure rate is constant
-
 	// Inverse Transform
 	x := a * math.Pow(math.Log(u1), (1/b))
 	return x, nil
