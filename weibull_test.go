@@ -7,13 +7,23 @@ import (
 
 func Test_Weibull(t *testing.T) {
 	var numbers []float64
+	a := 1.5
+	b := float64(1)
+
+	d := WeibullDistribution{
+		DistributionType: "Weibull",
+	}
 
 	for i := 1; i < 100; i++ {
-		n := Weibull()
+		n, _ := d.RandVar(a, b)
 		numbers = append(numbers, n)
-
-		fmt.Println(n)
+		// fmt.Println(n)
 	}
-	// Todo mean and std dev needs to be calculated
 
+	m := ArrayMean(numbers)
+	ev := d.ExpectedValue(a, b)
+
+	fmt.Printf("Expected value for a %v, b %v = %v", a, b, ev)
+	fmt.Println("--")
+	fmt.Printf("Actual mean of array values %v", m)
 }

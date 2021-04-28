@@ -8,12 +8,16 @@ import (
 func Test_Exponential(t *testing.T) {
 	var numbers []float64
 
+	a := 1.0
+	d := ExponentialDistribution{
+		DistributionType: "Exponential",
+	}
+
 	for i := 1; i < 100; i++ {
-		n := Exp()
+		n, _ := d.RandVar(a)
 		numbers = append(numbers, n)
 
 		fmt.Println(n)
 	}
-	// Todo mean and std dev needs to be calculated
 
 }

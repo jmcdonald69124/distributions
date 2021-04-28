@@ -1,17 +1,40 @@
 package dist
 
 import (
+	"errors"
 	"math"
 )
 
+type ExponentialDistribution struct {
+	DistributionType string
+}
+
 // Generate random numbers that fit the
-// weibull distribution
-func Exp() float64 {
+// exponential distribution
+
+// Parameters: a = Scale parameter and a > 0
+
+//  Inverse transformation
+func (d ExponentialDistribution) RandVar(a float64) (float64, error) {
+
 	u1 := RandomFloat()
 
-	// Lambda === 1.5
-	// Inverse Transform
-	x := math.Log(1-u1) / 1.5
+	if a <= 0 {
+		return -1, errors.New("a must be greater than 0")
+	}
 
-	return x
+	x := -a * math.Log(u1)
+	return x, nil
+}
+
+//  Expected Value: a
+func (d ExponentialDistribution) ExpectedValue(a float64) float64 {
+
+	return a
+}
+
+//  Variance: a^2
+func (d ExponentialDistribution) Variance(a float64) float64 {
+
+	return math.Pow(a, 2)
 }

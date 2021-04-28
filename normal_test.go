@@ -7,15 +7,18 @@ import (
 
 func Test_Normal(t *testing.T) {
 	var numbers []float64
+	d := NormalDistribution{
+		DistributionType: "Normal",
+	}
 
 	for i := 1; i < 100; i++ {
-		n, o := Normal()
-		numbers = append(numbers, n)
-		numbers = append(numbers, o)
+		n, _ := d.RandVar(.5, 1)
+		numbers = append(numbers, n[0])
+		numbers = append(numbers, n[1])
 
-		fmt.Println(n)
-		fmt.Println(o)
+		fmt.Println(n[0])
+		fmt.Println(n[1])
+
 	}
-	// Todo mean and std dev needs to be calculated
 
 }
