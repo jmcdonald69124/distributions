@@ -15,16 +15,16 @@ func Test_Triangular(t *testing.T) {
 		DistributionType: "Triangular",
 	}
 
-	for i := 1; i < 100; i++ {
+	for i := 1; i < 10000; i++ {
 		n, _ := d.RandVar(min, mode, max)
 		numbers = append(numbers, n)
-		// fmt.Println(n)
+		fmt.Println(n)
 	}
 
 	m := ArrayMean(numbers)
 	ev := d.ExpectedValue(min, mode, max)
 
-	fmt.Printf("Expected value for a %v, b %v = %v", a, b, ev)
+	fmt.Printf("Expected value for min %v, mode %v, max %v = %v", min, mode, max, ev)
 	fmt.Println("--")
 	fmt.Printf("Actual mean of array values %v", m)
 }

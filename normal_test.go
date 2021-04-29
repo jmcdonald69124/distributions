@@ -20,5 +20,5 @@ func Test_Normal(t *testing.T) {
 		fmt.Println(n[1])
 
 	}
-	PlotHistogram(5, numbers)
+	// PlotHistogram(5, numbers)
 }

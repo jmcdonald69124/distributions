@@ -1,0 +1,29 @@
+package dist
+
+import (
+	"fmt"
+	"testing"
+)
+
+func Test_Poisson(t *testing.T) {
+	var numbers []float64
+	lambda := float64(2)
+
+	d := PoissonDistribution{
+		DistributionType: "Poisson",
+	}
+
+	for i := 1; i < 10000; i++ {
+		n, _ := d.RandVar(lambda)
+		numbers = append(numbers, n)
+		fmt.Println(n)
+	}
+
+	m := ArrayMean(numbers)
+	ev := d.ExpectedValue(lambda)
+
+	fmt.Printf("%v Distribution Expected value for lambda %v, = %v", d.DistributionType, lambda, ev)
+	fmt.Println("")
+	fmt.Printf("Actual mean of array values %v", m)
+	fmt.Println("")
+}

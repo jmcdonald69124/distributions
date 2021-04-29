@@ -4,14 +4,14 @@
 This series of random number generators allows you to create random numbers that fit discrete and continuous distributions given a Unif(0,1) random number.
 
 - [x] [Standard Normal](#standard-normal)
-- [] [Erlang](#)
+- [x] [Erlang](#erlang)
 - [x] [Weibull](#weibull)
 - [x] [Geometric]()
 - [x] [Bernoulli](#bernoulli)
 - [x] [Exponential](#exponential)
 - [] [Gamma]()
-- [] [Negative Binomial](#)
-- [] [Poisson](#)
+- [x] [Negative Binomial](#negative-binomial)
+- [x] [Poisson](#poisson)
 - [x] [Triangular](#triangular)
 
 Go tests have been written against the Mean and Variance of the distributions and the documentation below will show the histograms from samples of random numbers returned by the random number generation functions.
@@ -122,7 +122,7 @@ The normal distribution's RandVar() function takes a mean and standard deviation
 	}
     n, _ := d.RandVar(m, sd)
 ```
-#### Mean 
+#### Expected Value  
 `E[X] = μ`
 
 #### Variance
@@ -130,3 +130,107 @@ The normal distribution's RandVar() function takes a mean and standard deviation
 _______________
 
 ## Triangular
+
+A triangular distribution has a lower limit (min), an upper limit (max) and mode and is used to describe a population when there is a limited amount of sample data.
+
+The _min_ parameter must be lower than the _max_ parameter<br>
+
+```
+    min := float64(0)
+	mode := .5
+	max := float64(1)
+
+	d := TriangularDistribution{
+		DistributionType: "Triangular",
+	}
+    n, _ := d.RandVar(min, mode, max)
+```
+#### Expected Value 
+`E(X) = (min + mode + max) / 3`
+#### Variance
+`Var(X) = min^2 + max^2 + mode^2 - (min * max) - (min * mode) - (max * mode) / 18`
+__________________
+
+## Negative Binomial
+
+The negative binomial distribution is used to model the number of failures _x_ before the _nth_ success. The RandVar() function takes in _p_ which is the probability of success and _n_ which is the number of successes. This function calculates the sum of _n_ geometric variates G(p).
+
+
+The parameter _p_ must be `0 < p < 1`<br>
+The parameter _n_ must be a positive integer<br> 
+
+```
+	p := .25
+	n := 4
+	d := NegativeBinomialDistribution{
+		DistributionType: "NegativeBinomialDistribution",
+	}	
+	x, _ := d.RandVar(p, n)
+```
+
+#### Expected Value 
+`E(X) = n(1-p)/p`
+#### Variance 
+`Var(X) = n(1-p)/p^2`
+__________________
+
+## Poisson 
+
+The Poisson distribution is used to model the number of arrivals over a given interval.
+
+Since the function is using the direct method the value of λ has been limited 
+to 20.
+
+The parameter _λ_ must be > 0 and < 21 <br>
+
+```
+	lambda := float64(2)
+	d := PoissonDistribution{
+		DistributionType: "Poisson",
+	}	
+	n, _ := d.RandVar(lambda)
+```
+
+#### Expected Value 
+`E(X) = λ`
+#### Variance 
+`Var(X) = λ`
+
+____________________
+
+## Erlang
+
+Where the events that occur can be modeld by the poisson distribution, the waiting times between k occurrences of the event are Erlang distributed.
+
+```
+	lambda := float64(2)
+	k := 1
+
+	d := ErlangDistribution{
+		DistributionType: "Erlang",
+	}
+	n, _ := d.RandVar(k, lambda)
+```
+
+#### Expected Value 
+`E(X) = k / λ`
+#### Variance 
+`Var(X) = k / λ^2 `
+
+________________
+
+## Gamma
+
+The gamma distribution RandVar() function produces random variables given the shape paramter _k_ and scale parameter _s_. 
+
+The parameter _k_ must be an integer > 0<br>
+The parameter _s_ must be an integer > 0  
+
+```
+
+```
+
+#### Expected Value 
+`E(X) = k * s`
+#### Variance 
+`Var(X) = k * s^2 `
