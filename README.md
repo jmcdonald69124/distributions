@@ -16,8 +16,10 @@ This series of random number generators allows you to create random numbers that
 
 Go tests have been written against the Mean and Variance of the distributions and the documentation below will show the histograms from samples of random numbers returned by the random number generation functions.
 
-Contributers:
+Contributers: 
 
+Ni, Li 
+Joshua McDonald
 
 ## Using this library
 
@@ -26,8 +28,9 @@ To use this library just `go get` this repository and use the following function
 All functions return a single random variate that fits the distribution selected. The distributions have the following functions:
 
 ```
-ExpectedValue([]interface{}) interface{}Variance([]interface{}) float64
-RandVar(interface{}) ([]interface{}, error)
+	ExpectedValue([]interface{}) interface{}
+	Variance([]interface{}) float64
+	RandVar(interface{}) ([]interface{}, error)
 }
 ```
 For most distributions the RandVar() function returns a single number, however, since the standard normal distribution is using the Box-Mueller method it will return a pair of numbers. 
