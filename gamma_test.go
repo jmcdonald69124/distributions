@@ -14,10 +14,10 @@ func Test_Gamma(t *testing.T) {
 		DistributionType: "Gamma",
 	}
 
-	for i := 1; i < 100000; i++ {
+	for i := 1; i < 100; i++ {
 		n, _ := d.RandVar(k, s)
 		numbers = append(numbers, n)
-		// fmt.Println(n)
+		fmt.Println(n)
 	}
 
 	m := ArrayMean(numbers)

@@ -9,7 +9,7 @@ This series of random number generators allows you to create random numbers that
 - [x] [Geometric]()
 - [x] [Bernoulli](#bernoulli)
 - [x] [Exponential](#exponential)
-- [] [Gamma]()
+- [x] [Gamma](#gamma)
 - [x] [Negative Binomial](#negative-binomial)
 - [x] [Poisson](#poisson)
 - [x] [Triangular](#triangular)
@@ -18,7 +18,7 @@ Go tests have been written against the Mean and Variance of the distributions an
 
 Contributers: 
 
-Ni, Li 
+Ni, Li <br>
 Joshua McDonald
 
 ## Using this library
@@ -226,14 +226,26 @@ ________________
 
 The gamma distribution RandVar() function produces random variables given the shape paramter _k_ and scale parameter _s_. 
 
-The parameter _k_ must be an integer > 0<br>
-The parameter _s_ must be an integer > 0  
+Lots of help on this from 
+
+- [www.hongliangjie.com](https://www.hongliangjie.com/2012/12/19/how-to-generate-gamma-random-variables/)
+- [Gamma Distribution](https://en.wikipedia.org/wiki/Gamma_distribution)
+- [Logarithmic Transformation-Based Gamma
+Random Number Generators](https://www.stat.purdue.edu/~xbw/research/jss102013.gamma.pdf)
+
+This generator relies on the matlab example which has been translated to Go and uses the standard normal random variate generator function from this same package.
 
 ```
+	k := 5
+	s := 1
 
+	d := GammaDistribution{
+		DistributionType: "Gamma",
+	}
+	n, _ := d.RandVar(k, s)
 ```
 
 #### Expected Value 
-`E(X) = k * s`
+`E(X) = k / s`
 #### Variance 
 `Var(X) = k * s^2 `

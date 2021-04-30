@@ -14,7 +14,7 @@ func Test_Weibull(t *testing.T) {
 		DistributionType: "Weibull",
 	}
 
-	for i := 1; i < 100; i++ {
+	for i := 1; i < 100000; i++ {
 		n, _ := d.RandVar(a, b)
 		numbers = append(numbers, n)
 		// fmt.Println(n)
@@ -22,8 +22,11 @@ func Test_Weibull(t *testing.T) {
 
 	m := ArrayMean(numbers)
 	ev := d.ExpectedValue(a, b)
+	v := d.Variance(a, b)
 
 	fmt.Printf("Expected value for a %v, b %v = %v", a, b, ev)
-	fmt.Println("--")
+	fmt.Println("")
+	fmt.Printf("%v Distribution Variance %v", d.DistributionType, v)
+	fmt.Println("")
 	fmt.Printf("Actual mean of array values %v", m)
 }

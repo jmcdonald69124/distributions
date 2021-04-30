@@ -9,21 +9,26 @@ import (
 // Bernoulli distribution
 
 func Test_Bernoulli(t *testing.T) {
-	var numbers []int
+	var numbers []float64
 	var p = .25
 	d := BernoulliDistribution{
 		DistributionType: "Bernoulli",
 	}
 
-	for i := 1; i < 100; i++ {
+	for i := 1; i < 100000; i++ {
 		n, _ := d.RandVar(p)
-		numbers = append(numbers, n)
+		numbers = append(numbers, float64(n))
 
-		fmt.Println(n)
+		// fmt.Println(n)
 	}
-	// Todo mean and std dev needs to be calculated
 
-	m := d.ExpectedValue(p)
+	m := ArrayMean(numbers)
+	ev := d.ExpectedValue(p)
+	v := d.Variance(p)
 
-	fmt.Println(m)
+	fmt.Printf("Expected value for p %v = %v", p, ev)
+	fmt.Println("")
+	fmt.Printf("%v Distribution Variance %v", d.DistributionType, v)
+	fmt.Println("")
+	fmt.Printf("Actual mean of array values %v", m)
 }

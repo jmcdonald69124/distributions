@@ -26,7 +26,7 @@ func (d WeibullDistribution) RandVar(a float64, b float64) (float64, error) {
 	}
 
 	// Inverse Transform
-	x := a * math.Pow(math.Log(u1), (1/b))
+	x := -a * math.Pow(math.Log(u1), (1/b))
 	return x, nil
 }
 

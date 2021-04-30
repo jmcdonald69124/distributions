@@ -11,9 +11,6 @@ type BernoulliDistribution struct {
 // Generate random numbers that fit the
 // Bernoulli distribution given a probability
 
-// Pr(X=1)=p=1
-// Pr(X=0)=1-q
-
 func (d BernoulliDistribution) RandVar(p float64) (int, error) {
 
 	if p < 0 || p > 1 {
@@ -23,9 +20,9 @@ func (d BernoulliDistribution) RandVar(p float64) (int, error) {
 	u1 := RandomFloat()
 
 	if u1 < p {
-		return 0, nil
+		return 1, nil
 	}
-	return 1, nil
+	return 0, nil
 }
 
 // Expected Value : p

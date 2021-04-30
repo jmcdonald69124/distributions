@@ -29,12 +29,10 @@ func (d ExponentialDistribution) RandVar(a float64) (float64, error) {
 
 //  Expected Value: a
 func (d ExponentialDistribution) ExpectedValue(a float64) float64 {
-
 	return a
 }
 
 //  Variance: a^2
 func (d ExponentialDistribution) Variance(a float64) float64 {
-
 	return math.Pow(a, 2)
 }
