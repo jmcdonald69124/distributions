@@ -25,6 +25,6 @@ func (d TriangularDistribution) ExpectedValue(min float64, mode float64, max flo
 
 // Variance : min^2 + max^2 + mode^2 - (min * max) - (min * mode) - (max * mode) / 18
 func (d TriangularDistribution) Variance(min float64, mode float64, max float64) float64 {
-	x := ((math.Pow(min, 2) + math.Pow(max, 2) + math.Pow(mode, 2)) - ((min * max) - (min * mode) - (max * mode))) / 18
+	x := (math.Pow(min, 2) + math.Pow(max, 2) + math.Pow(mode, 2) - (min * max) - (min * mode) - (max * mode)) / 18
 	return x
 }
