@@ -71,5 +71,5 @@ func (d GammaDistribution) ExpectedValue(k int, s int) int {
 
 // Variance : λ
 func (d GammaDistribution) Variance(k int, s int) float64 {
-	return float64(k) * math.Pow(float64(s), 2)
+	return float64(k) / math.Pow(float64(s), 2)
 }
