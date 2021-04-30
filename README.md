@@ -18,7 +18,7 @@ Go tests have been written against the Mean and Variance of the distributions an
 
 Contributers: 
 
-Ni, Li <br>
+Ni Li <br>
 Joshua McDonald
 
 ## Using this library
@@ -27,7 +27,7 @@ To use this library just `go get` this repository and use the following function
 
 All functions return a single random variate that fits the distribution selected. The distributions have the following functions:
 
-```
+```go
 	ExpectedValue([]interface{}) interface{}
 	Variance([]interface{}) float64
 	RandVar(interface{}) ([]interface{}, error)
@@ -46,7 +46,7 @@ Bernoulli's RandVar() takes a probability of p and given a Unif(0,1) number retu
 The function takes a float64, probability as a parameter. The function will return an error if the probability value is _less than_ 0 OR _greater than_ 1.
 
 #### Example 
-```
+```go
     var p = .25
 	d := BernoulliDistribution{
 		DistributionType: "Bernoulli",
@@ -69,7 +69,7 @@ The RandVar() function generates random numbers from a Unif(0,1) random number s
 The function will return an error if the scale parameter value is _less than_ 0 OR _equal to_ 0.
 
 #### Example
-```
+```go
     a := 1.0 // scale parameter
 	d := ExponentialDistribution{
 		DistributionType: "Exponential",
@@ -78,10 +78,10 @@ The function will return an error if the scale parameter value is _less than_ 0 
 ```
 
 #### Mean 
-`E[X] = scale parameter` 
+`E[X] = 1/scale parameter` 
 
 #### Variance
-`Var(X) = scale parameter^2`
+`Var(X) = 1/scale parameter^2`
 _________________
 ## Weibull
 The RandVar function of the Weibull distribution take a scale parameter _a_ and a shape parameter _b_ and returns a random valriable that fits the Weibull distribution. 
@@ -96,7 +96,7 @@ Weibull is commonly used to model failure rates of electronics where the failure
 `_b_ = 1`  ▶️ constant over time<br>
 
 #### Example
-```
+```go
     a := 1.5
 	b := float64(1)
 
@@ -117,7 +117,7 @@ _________________
 The normal distribution's RandVar() function takes a mean and standard deviation and returns two random variables z1, z2 using the Box-Muller method.
 
 #### Example
-```
+```go
     mean := .5
     sd := 1
     d := NormalDistribution{
@@ -138,7 +138,7 @@ A triangular distribution has a lower limit (min), an upper limit (max) and mode
 
 The _min_ parameter must be lower than the _max_ parameter<br>
 
-```
+```go
     min := float64(0)
 	mode := .5
 	max := float64(1)
@@ -151,7 +151,7 @@ The _min_ parameter must be lower than the _max_ parameter<br>
 #### Expected Value 
 `E(X) = (min + mode + max) / 3`
 #### Variance
-`Var(X) = min^2 + max^2 + mode^2 - (min * max) - (min * mode) - (max * mode) / 18`
+`Var(X) = (min^2 + max^2 + mode^2 - (min * max) - (min * mode) - (max * mode)) / 18`
 __________________
 
 ## Negative Binomial
@@ -162,7 +162,7 @@ The negative binomial distribution is used to model the number of failures _x_ b
 The parameter _p_ must be `0 < p < 1`<br>
 The parameter _n_ must be a positive integer<br> 
 
-```
+```go
 	p := .25
 	n := 4
 	d := NegativeBinomialDistribution{
@@ -186,7 +186,7 @@ to 20.
 
 The parameter _λ_ must be > 0 and < 21 <br>
 
-```
+```go
 	lambda := float64(2)
 	d := PoissonDistribution{
 		DistributionType: "Poisson",
@@ -205,7 +205,7 @@ ____________________
 
 Where the events that occur can be modeld by the poisson distribution, the waiting times between k occurrences of the event are Erlang distributed.
 
-```
+```go
 	lambda := float64(2)
 	k := 1
 
@@ -235,7 +235,7 @@ Random Number Generators](https://www.stat.purdue.edu/~xbw/research/jss102013.ga
 
 This generator relies on the matlab example which has been translated to Go and uses the standard normal random variate generator function from this same package.
 
-```
+```go
 	k := 5
 	s := 1
 
@@ -248,4 +248,4 @@ This generator relies on the matlab example which has been translated to Go and 
 #### Expected Value 
 `E(X) = k / s`
 #### Variance 
-`Var(X) = k * s^2 `
+`Var(X) = k / s^2 `
