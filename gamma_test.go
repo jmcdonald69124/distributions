@@ -17,7 +17,7 @@ func Test_Gamma(t *testing.T) {
 	for i := 1; i < 100; i++ {
 		n, _ := d.RandVar(k, s)
 		numbers = append(numbers, n)
-		fmt.Println(n)
+		// fmt.Println(n)
 	}
 
 	m := ArrayMean(numbers)
@@ -30,4 +30,6 @@ func Test_Gamma(t *testing.T) {
 	fmt.Println("")
 	fmt.Printf("Actual mean of array values %v", m)
 	fmt.Println("")
+
+	HistPlot(numbers)
 }

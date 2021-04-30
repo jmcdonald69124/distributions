@@ -29,4 +29,6 @@ func Test_Weibull(t *testing.T) {
 	fmt.Printf("%v Distribution Variance %v", d.DistributionType, v)
 	fmt.Println("")
 	fmt.Printf("Actual mean of array values %v", m)
+
+	HistPlot(numbers)
 }

@@ -34,4 +34,5 @@ func Test_Normal(t *testing.T) {
 	fmt.Printf("Actual mean of array values %v", n)
 	fmt.Println("")
 
+	HistPlot(numbers)
 }

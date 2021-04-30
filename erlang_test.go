@@ -30,4 +30,6 @@ func Test_Erlang(t *testing.T) {
 	fmt.Println("")
 	fmt.Printf("Actual mean of array values %v", m)
 	fmt.Println("")
+
+	HistPlot(numbers)
 }

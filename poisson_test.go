@@ -29,4 +29,6 @@ func Test_Poisson(t *testing.T) {
 	fmt.Println("")
 	fmt.Printf("Actual mean of array values %v", m)
 	fmt.Println("")
+
+	HistPlot(numbers)
 }

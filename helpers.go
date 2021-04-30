@@ -3,6 +3,10 @@ package dist
 import (
 	"math"
 	"math/rand"
+
+	"gonum.org/v1/plot"
+	"gonum.org/v1/plot/plotter"
+	"gonum.org/v1/plot/vg"
 )
 
 // The joy of polymorphism in Go!
@@ -33,4 +37,20 @@ func ArrayMean(values []float64) float64 {
 	}
 	x := float64(total) / float64(l)
 	return math.Ceil(x*100) / 100
+}
+
+func HistPlot(values plotter.Values) {
+	p := plot.New()
+
+	p.Title.Text = "histogram plot"
+
+	hist, err := plotter.NewHist(values, 20)
+	if err != nil {
+		panic(err)
+	}
+	p.Add(hist)
+
+	if err := p.Save(3*vg.Inch, 3*vg.Inch, "hist.png"); err != nil {
+		panic(err)
+	}
 }

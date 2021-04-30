@@ -20,6 +20,18 @@ func Test_Geometric(t *testing.T) {
 
 		fmt.Println(n)
 	}
-	// Todo mean and std dev needs to be calculated
+
+	m := ArrayMean(numbers)
+	ev := d.ExpectedValue(p)
+	v := d.Variance(p)
+
+	fmt.Printf("%v Distribution Expected value for p %v = %v", d.DistributionType, p, ev)
+	fmt.Println("")
+	fmt.Printf("%v Distribution Variance %v", d.DistributionType, v)
+	fmt.Println("")
+	fmt.Printf("Actual mean of array values %v", m)
+	fmt.Println("")
+
+	HistPlot(numbers)
 
 }
